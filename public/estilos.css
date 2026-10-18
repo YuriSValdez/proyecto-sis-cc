@@ -1,0 +1,326 @@
+/*Paleta de Colores*/
+:root{
+    --red: #dc2626;
+    --red-dark: #991b1b;
+    --yellow: #facc15;
+    --yellow-hover: #eab308;
+    --crazy-yellow:#a08412;
+    --crazy-orange:#fd9144ed;
+    --crazy-card-bg:#121212;
+    --bg-dark: #0b0b0b;
+    --bg-orange:#f4783ffa;
+    --bg-card: #141414;
+    --bg-admin: #1e293b;
+    --text-light: #f8fafc;
+    --text-gray: #94a3b8;
+    --transicion-suave: all 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+body{
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    overflow-x: hidden;
+}
+/*Botones de navegación de secciones*/
+.navbar-brand{
+    font-weight: 700;
+    letter-spacing: -0.3px;
+}
+.nav-link{ 
+    color: #fff;
+    font-weight: 500; 
+    font-size: 0.9rem; 
+    text-transform: uppercase; 
+    transition: color var(--text-light); 
+}
+
+.nav-link:hover, .nav-link.active{ 
+    color: var(--yellow); 
+    border-bottom: 2px solid var(--yellow);
+}
+
+/*Carrusel de imágenes*/
+.carousel-hero{
+    border-radius: 0 0 1rem 1rem;
+    overflow: hidden;
+    box-shadow: 0 15px 40px rgba(0,0,0, 0.5);
+    width: 100%;
+}
+.carousel-item-hero{
+    position: relative;
+    width: 100%;
+}
+.carousel-img{
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+@media(min-width:768px){
+    .carousel-item-hero,.carousel-item-hero picture, .carousel-img{
+        height: 580px !important;
+        max-height: 580px !important ;
+    }
+}
+.carousel-item-hero picture{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.carousel-caption-hero{
+    position: relative;
+    z-index: 2;
+    color: var(--red-dark);
+    text-align: left;
+    padding: 3rem
+}
+.carousel-caption-hero h1{
+    color:var(--red-dark);
+    font-weight: 800;
+    line-height: 1.15;
+}
+.btn-hero{
+    background-color: var(--red);
+    color: #fff;
+    font-weight: 700;
+    border-radius: 50px;
+    padding: 0.8rem 2rem;
+    transition: var(--transicion-suave);
+    box-shadow: 0 4px 16px rgba(233, 122, 19, 0.829);
+    border: none;
+}
+.btn-hero:hover{
+    background-color: #0b0b0b;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px rgba(206, 76, 16, 0.5);
+    color: #fff;
+}
+.carousel-control-prev-icon,.carousel-control-next-icon{
+    background-color: var(--red);
+    border-radius: 50%;
+    padding: 1.5rem;
+}
+.carousel-indicators button{
+    background-color: var(--yellow)!important;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+/*Sección Menù: botones de categorías*/
+.btn-category {
+    background-color: #1e1e1e;
+    color: #ffffff !important;
+    border: 1px solid #333;
+    border-radius: 50px !important;
+    transition: all 0.3s ease;
+}
+.btn-category:hover {
+    border-color: var(--crazy-orange);
+    color: var(--bg-orange) !important;
+}
+.nav-pills .btn-category.active {
+    background-color: var(--bg-orange) !important;
+    color: #ffffff !important;
+    border-color: var(--bg-orange);
+    box-shadow: 0px 4px 15px rgba(250, 204, 21, 0.3);
+}
+/*Sección Menú: Tarjetas de productos*/
+.menu-card {
+    background-color: var(--crazy-card-bg);
+    border: 1px solid #222;
+    transition: transform 0.3s, border-color 0.3s;
+}
+.menu-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--crazy-yellow);
+}
+.card-img-custom {
+    height: 200px;
+    object-fit: cover;
+}
+.btn-crazy-red {
+    background-color: var(--red);
+    color: #fff;
+    border: none;
+}
+.btn-crazy-red:hover {
+    background-color: var(--red-dark);
+    color: #fff;
+}
+/*Sección Promociones: Carrusel secundario de imágenes*/
+.carousel-secondary{
+    border-radius: 1rem;
+    overflow: hidden;
+    width: 100%;
+}
+.carousel-item-secondary{
+    position: relative;
+    width: 100%;
+}
+.carousel-item-secondary picture{
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.carousel-img-secondary{
+    width: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+@media (min-width: 768px) {
+    .carousel-item-secondary, .carousel-item-secondary picture,
+    .carousel-img-secondary{
+        height: 350px !important;
+        max-height: 350px !important;
+        min-height: 350px !important;
+    } 
+}
+@media (max-width: 767.98px){
+    .carousel-img-secondary{
+        height: auto;
+        max-height: 350px;
+    }
+}
+.carousel-caption-secondary{
+    position: relative;
+    z-index: 2;
+    color: var(--crazy-orange);
+    text-align: left;
+    padding: 3rem
+}
+.carousel-caption-secondary h1{
+    color:var(--crazy-yellow);
+    font-weight: 800;
+    line-height: 1.15;
+}
+/*Sección Nosotros: Tarjetas de visión, valor y misión. También imagen con redacción de Nuestra historia.*/
+.card-vision, 
+.card-valor, 
+.card-mision {
+    border-radius: 10px;
+    background: var(--red-dark);
+    border: 2px solid #ebeb6d;
+    transition: var(--transicion-suave);
+}
+.card-vision:hover, 
+.card-valor:hover,
+.card-mision:hover{
+    transform: translateY(-8px);
+    box-shadow: 0 5px 17px rgba(236, 221, 2, 0.938);
+}
+.story-hero-img{
+    height: 500px;
+    background-image: url('img/hsitoriacc.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+.story-overlay{
+    background: linear-gradient(90deg, rgba(63, 63, 63, 0.162) 0%, rgba(48, 47, 47, 0.8))55%;
+}
+.story-text-content{
+    max-width: 550px;
+}
+/*Sección Ubicación: Horarios de atención y enlace gráfico de la ubicación.*/
+.map-container{
+    border-radius: 12px; 
+    overflow: hidden; 
+    height: 100%; 
+    min-height: 300px;
+}
+.card-horarios{
+    background-color: var(--crazy-card-bg);
+    transition: var(--transicion-suave);
+}
+.card-horarios:hover{
+    border-color: var(--red-dark);
+    transform: translateY(-8px);
+}
+/*Pie de página: Logo de Crazy Chicken, número de contacto y redes sociales.*/
+footer {
+    background-color: #050505;
+    padding: 60px 0 30px;
+    border-top: 2px solid var(--red-dark);
+}
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.footer-logo-side p {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    margin-top: 15px;
+}
+.footer-heading {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    color: #fff;
+}
+.footer-links li {
+    margin-bottom: 12px;
+}
+
+.footer-links a {
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    transition: color 0.3s;
+}
+.footer-links a:hover {
+    color: var(--yellow);
+    padding-left: 5px;
+}
+.contact-info li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-gray);
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    justify-content: center;
+}
+.contact-info i {
+    color: var(--red);
+}
+.social-icons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--red);
+    transition: all 0.3s;
+}
+.social-btn:hover {
+    background-color: var(--yellow);
+    color: #000;
+    border-color: var(--yellow);
+    transform: translateY(-3px);
+}
+.footer-bottom {
+    text-align: center;
+    padding-top: 30px;
+    border-top: 1px solid #111;
+    color: #555;
+    font-size: 0.8rem;
+} 
+.logo {
+    font-family: 'Impact', sans-serif;
+    font-size: 1.8rem;
+    color: var(--yellow);
+    display: flex;
+    flex-direction: column;
+    line-height: 0.9;
+    text-shadow: 2px 2px 0px var(--red-primary);
+}

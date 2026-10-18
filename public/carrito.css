@@ -1,0 +1,102 @@
+/* ==CRAZY CHICKEN - Canasta de compras == */
+
+/* Botón flotante de la canasta */
+.btn-carrito {
+    position: fixed; right: 20px; bottom: 20px; z-index: 1030;
+    width: 62px; height: 62px; border-radius: 50%; border: 0;
+    background: var(--yellow); color: #111; font-size: 1.6rem;
+    display: flex; align-items: center; justify-content: center;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .55);
+    transition: var(--transicion-suave);
+}
+.btn-carrito:hover { background: var(--yellow-hover); transform: translateY(-3px); }
+.btn-carrito.rebote { animation: rebote .4s; }
+@keyframes rebote { 0%,100% { transform: scale(1); } 40% { transform: scale(1.18); } }
+.carrito-contador {
+    position: absolute; top: -4px; right: -4px; min-width: 24px; height: 24px; padding: 0 6px;
+    border-radius: 12px; background: var(--red); color: #fff; border: 2px solid var(--bg-dark);
+    font-size: .8rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+}
+.carrito-contador.vacio { display: none; }
+
+/* Panel lateral */
+.panel-carrito { --bs-offcanvas-width: min(420px, 100vw); background: var(--crazy-card-bg); color: var(--text-light); }
+.panel-carrito .titulo-cc { font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; color: var(--yellow); letter-spacing: .5px; }
+.panel-carrito .form-control, .panel-carrito .form-select { background: #1e1e1e; border-color: #333; color: #fff; }
+.panel-carrito .form-control::placeholder { color: #777; }
+.panel-carrito .form-control:focus, .panel-carrito .form-select:focus { border-color: var(--yellow); box-shadow: 0 0 0 .2rem rgba(250, 204, 21, .2); }
+.panel-carrito .form-label { color: var(--text-gray); font-size: .85rem; margin-bottom: .25rem; }
+
+/* Productos dentro de la canasta */
+.item-carrito { display: grid; grid-template-columns: 1fr auto; gap: 4px 12px; padding: 14px 0; border-bottom: 1px solid #262626; }
+.item-carrito .nombre { font-weight: 600; }
+.item-carrito .precio-unit { color: var(--text-gray); font-size: .85rem; }
+.item-carrito .subtotal { font-weight: 700; color: var(--yellow); text-align: right; }
+.cantidad-ctl { display: inline-flex; align-items: center; gap: 10px; }
+.cantidad-ctl button {
+    width: 30px; height: 30px; border-radius: 50%; border: 1px solid #444; background: #1e1e1e; color: #fff;
+    display: inline-flex; align-items: center; justify-content: center; line-height: 1; transition: var(--transicion-suave);
+}
+.cantidad-ctl button:hover { border-color: var(--yellow); color: var(--yellow); }
+.cantidad-ctl button.quitar:hover { border-color: var(--red); color: var(--red); }
+.cantidad-ctl .n { min-width: 22px; text-align: center; font-weight: 700; }
+
+.carrito-vacio { text-align: center; color: var(--text-gray); padding: 48px 12px; }
+.carrito-vacio i { font-size: 3rem; color: #333; display: block; margin-bottom: 8px; }
+
+.carrito-pie { border-top: 2px solid var(--red-dark); padding-top: 14px; margin-top: 12px; }
+.carrito-total { display: flex; justify-content: space-between; align-items: baseline; font-size: 1.25rem; font-weight: 700; margin-bottom: 12px; }
+.carrito-total .monto { color: var(--yellow); font-size: 1.6rem; }
+
+/* Pago con QR / Transferencia */
+.pago-qr {
+    background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 12px;
+    padding: 16px; margin-bottom: 16px; text-align: center;
+}
+.pago-qr-titulo { color: var(--text-gray); font-size: .85rem; margin: 0 0 10px; }
+.pago-qr-img {
+    width: 190px; max-width: 100%; aspect-ratio: 1 / 1; object-fit: contain;
+    background: #fff; border-radius: 10px; padding: 8px; display: inline-block;
+}
+.pago-qr-ayuda { color: var(--text-gray); font-size: .82rem; margin: 12px 0 8px; }
+.pago-qr-whatsapp {
+    display: inline-flex; align-items: center; gap: 8px; background: #25D366; color: #0b0b0b;
+    font-weight: 700; text-decoration: none; padding: .55rem 1.2rem; border-radius: 50px;
+    transition: var(--transicion-suave);
+}
+.pago-qr-whatsapp:hover { background: #1ebe57; transform: translateY(-2px); color: #0b0b0b; }
+.pago-qr-whatsapp i { font-size: 1.1rem; }
+
+.btn-pedir { background: var(--red); color: #fff; font-weight: 700; border: 0; border-radius: 50px; padding: .8rem 1.5rem; transition: var(--transicion-suave); }
+.btn-pedir:hover:not(:disabled) { background: var(--red-dark); color: #fff; transform: translateY(-2px); }
+.btn-pedir:disabled { opacity: .45; }
+
+/* Confirmación */
+.pedido-listo i.bi-check-circle-fill { font-size: 4rem; color: var(--yellow); }
+.pedido-listo .numero { display: inline-block; margin: 8px 0; padding: 6px 22px; border: 2px dashed var(--yellow); border-radius: 10px; font-size: 1.8rem; font-weight: 800; color: var(--yellow); }
+
+/* Aviso emergente */
+#avisoCC {
+    position: fixed; left: 50%; bottom: 100px; z-index: 2000; transform: translate(-50%, 20px);
+    background: #fff; color: #111; padding: 10px 20px; border-radius: 50px; font-weight: 600; font-size: .9rem;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .5); opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; max-width: 90vw; text-align: center;
+}
+#avisoCC.on { opacity: 1; transform: translate(-50%, 0); }
+#avisoCC.error { background: var(--red); color: #fff; }
+
+/* Producto agotado */
+.menu-card.agotado { position: relative; }
+.menu-card.agotado .card-img-top { filter: grayscale(.7) brightness(.55); }
+.menu-card.agotado .card-title,
+.menu-card.agotado .card-text,
+.menu-card.agotado .fs-3 { opacity: .55; }
+.menu-card.agotado .btn-agregar { opacity: .35; pointer-events: none; }
+.menu-card.agotado::before {
+    content: 'AGOTADO';
+    position: absolute; top: 18px; right: -36px; z-index: 5;
+    background: var(--red); color: #fff; font-weight: 800; font-size: .72rem; letter-spacing: 1.5px;
+    padding: 5px 42px; transform: rotate(35deg);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .45);
+}
+
+@media (prefers-reduced-motion: reduce) { .btn-carrito.rebote { animation: none; } * { transition: none !important; } }

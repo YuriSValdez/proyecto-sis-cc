@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de administración - Crazy Chicken</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="estilos.css">
+    <style>
+        .kpi { background: var(--crazy-card-bg); border: 1px solid #222; border-radius: 12px; padding: 16px 18px; height: 100%; }
+        .kpi .valor { font-size: 1.9rem; font-weight: 800; color: var(--yellow); line-height: 1.1; }
+        .kpi .etiqueta { color: var(--text-gray); font-size: .85rem; }
+        .panel { background: var(--crazy-card-bg); border: 1px solid #222; border-radius: 12px; padding: 16px; margin-bottom: 16px; }
+        .panel h2 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 12px; }
+
+        .filtros label { color: var(--text-gray); font-size: .8rem; }
+        .filtros .form-control, .filtros .form-select { background: #1e1e1e; border-color: #333; color: #fff; }
+
+        /* -- Navegación por secciones -- */
+        .tabs-admin { display: flex; flex-wrap: wrap; gap: 6px; border-bottom: 2px solid #222; margin-bottom: 20px; }
+        .tabs-admin button {
+            background: none; border: 0; padding: 10px 18px; font-weight: 700; color: var(--text-gray);
+            border-radius: 8px 8px 0 0; display: flex; align-items: center; gap: 8px; transition: var(--transicion-suave);
+        }
+        .tabs-admin button:hover { color: #fff; background: #1a1a1a; }
+        .tabs-admin button.on { background: var(--red); color: #fff; }
+        .tab-panel.d-none { display: none; }
+
+        /* -- Cada pedido es como una comanda de cocina -- */
+        .pedido { background: var(--crazy-card-bg); border: 1px solid #222; border-left: 6px solid var(--yellow); border-radius: 10px; padding: 14px 16px; margin-bottom: 12px; }
+        .pedido.est-preparacion { border-left-color: var(--crazy-orange); }
+        .pedido.est-listo { border-left-color: #22c55e; }
+        .pedido.est-entregado { border-left-color: #555; opacity: .75; }
+        .pedido.est-cancelado { border-left-color: var(--red-dark); opacity: .6; }
+        .pedido .num { font-size: 1.3rem; font-weight: 800; }
+        .pedido .sel-estado { background-color: #1e1e1e; border-color: #444; color: #fff; width: auto; }
+        .pedido ul.items { list-style: none; margin: 10px 0; padding: 10px 0; border-top: 1px dashed #333; border-bottom: 1px dashed #333; }
+        .pedido ul.items li { display: flex; justify-content: space-between; gap: 12px; padding: 2px 0; }
+        .pedido .cant { color: var(--yellow); font-weight: 700; margin-right: 6px; }
+        .chip { display: inline-block; padding: 2px 10px; border-radius: 50px; font-size: .78rem; border: 1px solid #444; color: var(--text-gray); margin-right: 4px; }
+        .chip.delivery { border-color: var(--crazy-orange); color: var(--crazy-orange); }
+        .pedido-acciones { display: flex; gap: 8px; margin-top: 10px; }
+
+        /* -- Edición de productos dentro de un pedido -- */
+        .edicion { border-top: 1px dashed #333; margin-top: 10px; padding-top: 12px; }
+        .edicion .fila { display: grid; grid-template-columns: 1fr auto auto; gap: 8px; align-items: center; padding: 6px 0; }
+        .edicion .fila .cantidad-ctl { display: inline-flex; align-items: center; gap: 8px; }
+        .edicion .fila .cantidad-ctl button { width: 28px; height: 28px; border-radius: 50%; border: 1px solid #444; background: #1e1e1e; color: #fff; }
+        .edicion .agregar { display: flex; gap: 8px; margin-top: 10px; }
+        .edicion .agregar select { flex: 1; }
+
+        /* -- Indicador "en vivo" -- */
+        .pulso-vivo { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; display: inline-block; box-shadow: 0 0 0 rgba(34,197,94,.6); animation: pulso 1.8s infinite; }
+        @keyframes pulso { 0% { box-shadow: 0 0 0 0 rgba(34,197,94,.6); } 70% { box-shadow: 0 0 0 8px rgba(34,197,94,0); } 100% { box-shadow: 0 0 0 0 rgba(34,197,94,0); } }
+
+        /* -- Informe (tabla resumen imprimible) -- */
+        .tabla-informe { width: 100%; border-collapse: collapse; font-size: .92rem; }
+        .tabla-informe th, .tabla-informe td { padding: 8px 10px; border-bottom: 1px solid #222; text-align: left; }
+        .tabla-informe th { color: var(--text-gray); font-weight: 700; font-size: .8rem; text-transform: uppercase; }
+        .tabla-informe td.num { text-align: right; }
+        .tabla-informe tfoot td { font-weight: 800; color: var(--yellow); border-top: 2px solid #333; border-bottom: 0; }
+
+        .barra { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; font-size: .88rem; margin-bottom: 8px; }
+        .barra .pista { grid-column: 1 / -1; height: 8px; background: #222; border-radius: 4px; overflow: hidden; }
+        .barra .relleno { height: 100%; background: var(--red); }
+        .vacio { color: var(--text-gray); text-align: center; padding: 30px 10px; }
+
+        #avisoAdmin { position: fixed; left: 50%; bottom: 24px; transform: translate(-50%, 20px); background: var(--yellow); color: #111; font-weight: 700; padding: 10px 22px; border-radius: 50px; opacity: 0; pointer-events: none; transition: opacity .2s, transform .2s; z-index: 2000; max-width: 90vw; text-align: center; }
+        #avisoAdmin.on { opacity: 1; transform: translate(-50%, 0); }
+
+        @media print {
+            nav, .tabs-admin, .filtros, #avisoAdmin, .no-imprimir { display: none !important; }
+            body { background: #fff; color: #000; }
+        }
+
+        /* -- Disponibilidad del menú (marcar productos como agotados) -- */
+        .grid-disponibilidad { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 10px; }
+        .prod-disp { background: #1a1a1a; border: 1px solid #262626; border-radius: 10px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; gap: 10px; transition: var(--transicion-suave); }
+        .prod-disp.agotado { opacity: .55; border-color: var(--red-dark); }
+        .prod-disp .info { min-width: 0; }
+        .prod-disp .nombre { font-weight: 600; font-size: .92rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .prod-disp.agotado .nombre { text-decoration: line-through; color: var(--text-gray); }
+        .prod-disp .precio { color: var(--text-gray); font-size: .78rem; }
+        .switch-disp { position: relative; width: 42px; height: 24px; flex-shrink: 0; cursor: pointer; }
+        .switch-disp input { opacity: 0; width: 0; height: 0; position: absolute; }
+        .switch-disp .slider { position: absolute; inset: 0; background: #333; border-radius: 999px; transition: var(--transicion-suave); }
+        .switch-disp .slider::before { content: ''; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: #fff; border-radius: 50%; transition: var(--transicion-suave); }
+        .switch-disp input:checked + .slider { background: #22c55e; }
+        .switch-disp input:checked + .slider::before { transform: translateX(18px); }
+        .switch-disp input:focus-visible + .slider { outline: 2px solid var(--yellow); outline-offset: 2px; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark border-bottom border-secondary py-2" style="background-color: var(--crazy-card-bg);">
+        <div class="container">
+            <span class="navbar-brand m-0">
+                <strong class="text-warning" style="font-family: 'Franklin Gothic Medium';">CRAZY <span class="text-danger">CHICKEN</span></strong>
+                <small class="text-secondary ms-2">Panel de administración</small>
+            </span>
+            <div class="d-flex gap-2">
+                <a href="index.html" class="btn btn-outline-light btn-sm rounded-pill px-3"><i class="bi bi-house"></i> Ver sitio</a>
+                <button id="btnSalir" class="btn btn-danger btn-sm rounded-pill px-3"><i class="bi bi-box-arrow-right"></i> Salir</button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container py-4">
+        <nav class="tabs-admin" id="tabsAdmin">
+            <button type="button" data-tab="registro" class="on"><i class="bi bi-clipboard2-pulse"></i> Registro</button>
+            <button type="button" data-tab="ventas"><i class="bi bi-graph-up-arrow"></i> Control de Ventas</button>
+            <button type="button" data-tab="informe"><i class="bi bi-file-earmark-bar-graph"></i> Informe de Ventas</button>
+        </nav>
+
+        <section id="tab-registro" class="tab-panel">
+            <div class="panel">
+                <div class="d-flex flex-wrap justify-content-between align-items-center mb-2 gap-2">
+                    <h2 class="m-0"><i class="bi bi-egg-fried"></i> Disponibilidad del menú</h2>
+                    <small class="text-secondary" id="ultimaActMenu"></small>
+                </div>
+                <p class="text-secondary small mb-3">Apaga un producto para marcarlo "Agotado": desaparece de inmediato del menú que ven tus clientes.</p>
+                <div id="gridDisponibilidad" class="grid-disponibilidad"></div>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center mb-3 gap-2">
+                <div class="d-flex align-items-center gap-2">
+                    <span class="pulso-vivo" aria-hidden="true"></span>
+                    <strong>Pedidos de hoy, en vivo</strong>
+                    <select id="filtroEstadoRegistro" class="form-select form-select-sm ms-2" style="width:auto">
+                        <option value="">Todos los estados</option>
+                        <option>Pendiente</option><option>En preparación</option><option>Listo</option><option>Entregado</option><option>Cancelado</option>
+                    </select>
+                </div>
+                <small class="text-secondary" id="ultimaActRegistro"></small>
+            </div>
+            <div id="listaRegistro"></div>
+        </section>
+
+        <section id="tab-ventas" class="tab-panel d-none">
+            <form class="filtros row g-2 align-items-end mb-4" id="filtrosVentas">
+                <div class="col-6 col-md-2"><label for="desdeVentas">Desde</label><input type="date" id="desdeVentas" class="form-control"></div>
+                <div class="col-6 col-md-2"><label for="hastaVentas">Hasta</label><input type="date" id="hastaVentas" class="form-control"></div>
+                <div class="col-6 col-md-2">
+                    <label for="estadoVentas">Estado</label>
+                    <select id="estadoVentas" class="form-select">
+                        <option value="">Todos</option>
+                        <option>Pendiente</option><option>En preparación</option><option>Listo</option><option>Entregado</option><option>Cancelado</option>
+                    </select>
+                </div>
+                <div class="col-12 col-md-6 d-flex flex-wrap gap-2">
+                    <button type="button" class="btn btn-outline-warning btn-sm" data-rango-ventas="hoy">Hoy</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" data-rango-ventas="7">Últimos 7 días</button>
+                    <button type="button" class="btn btn-outline-warning btn-sm" data-rango-ventas="mes">Este mes</button>
+                    <button type="submit" class="btn btn-warning btn-sm fw-bold"><i class="bi bi-arrow-repeat"></i> Actualizar</button>
+                    <small class="text-secondary align-self-center" id="ultimaActVentas"></small>
+                </div>
+                <div class="col-12"><div id="errorFechaVentas" class="alert alert-danger py-2 d-none mb-0"></div></div>
+            </form>
+
+            <div class="row g-3 mb-4" id="kpisVentas"></div>
+
+            <div class="row g-4">
+                <div class="col-lg-8">
+                    <h2 class="h5 fw-bold mb-3">Pedidos del periodo</h2>
+                    <div id="listaVentas"></div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="panel"><h2>Ventas por método de pago</h2><div id="repMetodo"></div></div>
+                    <div class="panel"><h2>Productos más vendidos</h2><div id="repTop"></div></div>
+                    <div class="panel"><h2>Ventas por día</h2><div id="repDia"></div></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="tab-informe" class="tab-panel d-none">
+            <form class="filtros row g-2 align-items-end mb-4" id="filtrosInforme">
+                <div class="col-6 col-md-3"><label for="desdeInforme">Desde</label><input type="date" id="desdeInforme" class="form-control"></div>
+                <div class="col-6 col-md-3"><label for="hastaInforme">Hasta</label><input type="date" id="hastaInforme" class="form-control"></div>
+                <div class="col-12 col-md-6 d-flex flex-wrap gap-2">
+                    <button type="submit" class="btn btn-warning btn-sm fw-bold"><i class="bi bi-file-earmark-bar-graph"></i> Generar informe</button>
+                    <button type="button" id="btnImprimir" class="btn btn-outline-light btn-sm no-imprimir"><i class="bi bi-printer"></i> Imprimir</button>
+                    <small class="text-secondary align-self-center" id="ultimaActInforme"></small>
+                </div>
+                <div class="col-12"><div id="errorFechaInforme" class="alert alert-danger py-2 d-none mb-0"></div></div>
+            </form>
+
+            <div id="cabezaInforme" class="mb-3"></div>
+            <div class="row g-3 mb-4" id="kpisInforme"></div>
+            <div class="panel">
+                <h2>Detalle de ventas registradas</h2>
+                <div class="table-responsive"><table class="tabla-informe" id="tablaInforme"></table></div>
+            </div>
+        </section>
+    </main>
+    <div id="avisoAdmin" role="status"></div>
+    <script src="js/admin.js"></script>
+</body>
+</html>

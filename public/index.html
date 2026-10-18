@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Crazy Chicken</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css"> 
+    <link rel="stylesheet" href="estilos.css">
+    <link rel="stylesheet" href="carrito.css">
+</head>
+<body>
+    <nav class="navbar navbar-dark navbar-expand-lg sticky-top py-2 border-bottom border-secondary" style="background-color: var(--crazy-card-bg);">
+        <div class="container">
+            <a href="#" class="navbar-brand d-flex align-items-center">
+                <span class="d-inline-flex align-items-center justify-content-center m-2 rounded-circle bg-danger bg-opacity-10 p-2" style="height: 60px; width: 60px;;">
+                    <img src="img/logoCCp.png" alt="Logo Crazy Chiken" style="height: 150%; width: auto; object-fit: contain;">
+                </span>
+                <span>
+                    <strong class="text-warning h1 m-0" style="font-family: 'Franklin Gothic Medium';">CRAZY <span class="text-danger">CHICKEN</span></strong>
+                    <small class="d-block text-white" style="font-size: 0.85rem;">SABOR QUE ENLOQUECE</small>
+                </span>
+            </a>
+            <button class="navbar-toggler btn btn-warning text-danger" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarPrincipal">
+                <ul class="navbar-nav ms-auto mb-2 mb-lg-0 align-items-lg-center gap-3">
+                    <li class="nav-item"><a href="#" class="nav-link active">INICIO</a></li>
+                    <li class="nav-item"><a href="#menu" class="nav-link">MENÚ</a></li>
+                    <li class="nav-item"><a href="#promociones" class="nav-link">PROMOCIONES</a></li>
+                    <li class="nav-item"><a href="#nosotros" class="nav-link">NOSOTROS</a></li>
+                    <li class="nav-item"><a href="#ubicacion" class="nav-link">UBICACIÓN</a></li>
+                    <li class="nav-item"><a href="#contactanos" class="nav-link">CONTÁCTANOS</a></li>
+                </ul>
+                <div class="collapse navbar-collapse" id="navbarPrincipal mx-2">
+                    <button class="btn btn-outline-light btn-sm px-3 rounded-pill ms-auto" data-bs-toggle="modal" data-bs-target="#loginModal">
+                        <i class="bi bi-lock-fill me-1"></i> Admin
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </nav>
+    <div id="heroCarousel" class="carousel slide carousel-hero mb-5" data-bs-ride="carousel" data-bs-interval="4500">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner rounded-4 shadow-sm">
+            <div class="carousel-item active carousel-item-hero">
+                <picture>
+                    <source media="(min-width:768px)" srcset="img/imag1carusel.jpg">
+                    <img src="img/sm1carusel.jpeg" class="d-block w-100 carousel-img" alt="imagen 1">
+                </picture>
+            </div>
+           <div class="carousel-item carousel-item-hero">
+                <picture>
+                    <source media="(min-width:768px)" srcset="img/imag2carusel3.jpeg">
+                    <img src="img/sm2carusel.jpeg" class="d-block w-100 carousel-img" alt="imagen 2">
+                </picture>
+            </div>
+            <div class="carousel-item carousel-item-hero">
+                <picture>
+                    <source media="(min-width:768px)" srcset="img/imag3carusel.jpeg">
+                    <img src="img/sm3carusel.jpeg" class="d-block w-100 carousel-img" alt="imagen 3">
+                </picture>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+   </div>
+   <section id="menu" class="py-5 ">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h3 class="text-danger fw-bold text-uppercase m-0">NUESTRO MENÚ</h3>
+                <h2 class="font-impact text-uppercase display-5 fw-bold">LO MÁS<span class="text-warning"> PEDIDO</span></h2>
+            </div>
+            <ul class="nav nav-pills justify-content-center gap-2 mb-5" id="pills-tab" role="tablist">
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link active btn-category font-impact text-uppercase px-4 py-2" id="pill-economicos-tab" data-bs-toggle="pill" 
+                    data-bs-target="#pill-economicos" type="button" role="tab" aria-controls="pill-economicos" aria-selected="true">
+                        <i class="bi bi-piggy-bank me-2"></i> Económicos
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn-category font-impact text-uppercase px-4 py-2" id="pill-salchipapas-tab" data-bs-toggle="pill" 
+                    data-bs-target="#pill-salchipapas" type="button" role="tab" aria-controls="pill-salchipapas" aria-selected="false">
+                        <i class="bi bi-box2-fill me-2"></i> Salchipapas
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn-category font-impact text-uppercase px-4 py-2" id="pill-alitas-tab" data-bs-toggle="pill" 
+                    data-bs-target="#pill-alitas" type="button" role="tab" aria-controls="pill-alitas" aria-selected="false">
+                        <i class="bi bi-fire me-2"></i> Alitas de Pollo
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn-category font-impact text-uppercase px-4 py-2" id="pill-pipocas-tab" data-bs-toggle="pill" 
+                    data-bs-target="#pill-pipocas" type="button" role="tab" aria-controls="pill-pipocas" aria-selected="false">
+                        <i class="bi bi-box2-heart me-2"></i> Pipocas de Pollo
+                    </button>
+                </li>
+                <li class="nav-item" role="presentation">
+                    <button class="nav-link btn-category font-impact text-uppercase px-4 py-2" id="pill-bebidas-tab" data-bs-toggle="pill" 
+                    data-bs-target="#pill-bebidas" type="button" role="tab" aria-controls="pill-bebidas" aria-selected="false">
+                        <i class="bi bi-cup-straw me-2"></i> Bebidas
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pill-economicos" role="tabpanel" aria-labelledby="pill-economicos-tab" tabindex="0">
+                    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 g-4">
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white position-relative">
+                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold text-uppercase">Estudiantil</span>
+                                <img src="img/universitario.jpeg" class="card-img-top card-img-custom" alt="Combo Universitario">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Combo Universitario</h5>
+                                        <p class="card-text text-secondary small">1 Pieza de pollo, guarnición de arroz, papas fritas, coca cola y aderezos de la casa.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 20</span>
+                                        <button type="button" data-id="1" aria-label="Agregar Combo Universitario a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center"style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white position-relative">
+                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold text-uppercase">Popular</span>
+                                <img src="img/popular.jpeg" class="card-img-top card-img-custom" alt="Combo Popular">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Combo Popular</h5>
+                                        <p class="card-text text-secondary small">1 Pieza de pollo, guarnición de arroz, papas fritas, refresco y aderezos de la casa.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 25</span>
+                                        <button type="button" data-id="2" aria-label="Agregar Combo Popular a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center"style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white position-relative">
+                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold text-uppercase">dúo</span>
+                                <img src="img/duo.jpeg" class="card-img-top card-img-custom" alt="Combo Duo">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Combo Dúo</h5>
+                                        <p class="card-text text-secondary small">2 Piezas de pollo, guarnición de arroz, papas fritas, 2 refrescos a elección y aderezos de la casa.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 35</span>
+                                        <button type="button" data-id="3" aria-label="Agregar Combo Dúo a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center"style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white position-relative">
+                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold text-uppercase">Triple</span>
+                                <img src="img/triple.jpeg" class="card-img-top card-img-custom" alt="Combo Triple">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Combo Triple</h5>
+                                        <p class="card-text text-secondary small">3 Piezas de pollo, guarnición de arroz, papas fritas, 3 refrescos a elección y aderezos de la casa.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 42</span>
+                                        <button type="button" data-id="4" aria-label="Agregar Combo Triple a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center"style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pill-salchipapas" role="tabpanel" aria-labelledby="pill-salchipapas-tab" tabindex="0">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white">
+                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold text-uppercase">Clásica</span>
+                                <img src="img/salchippsimple.jpeg" class="card-img-top card-img-custom" alt="Salchipapa Clasica">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Salchipapa Clásica</h5>
+                                        <p class="card-text text-secondary small">Papas fritas crujientes con rodajas de salchicha especial de la casa y aderezos.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 15</span>
+                                        <button type="button" data-id="5" aria-label="Agregar Salchipapa Clásica a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center" style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white">
+                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold text-uppercase">Nuevo</span>
+                                <img src="img/salchiduo.jpeg" class="card-img-top card-img-custom" alt="Salchipapa Duo">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Salchipapa Dúo</h5>
+                                        <p class="card-text text-secondary small">Papas fritas crujientes con rodajas de salchicha especial de la casa y aderezos a elección.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 25</span>
+                                        <button type="button" data-id="6" aria-label="Agregar Salchipapa Dúo a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center" style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pill-alitas" role="tabpanel" aria-labelledby="pill-alitas-tab" tabindex="0">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white position-relative">
+                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold text-uppercase">Hot</span>
+                                <img src="img/alitasnormales.jpeg" class="card-img-top card-img-custom" alt="Alitas BBQ">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Alitas Buffalo</h5>
+                                        <p class="card-text text-secondary small">Fritas o crujientes bañadas en salsa a base de mantequilla, con refresco incluido y servido con salsa de queso azul.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 40</span>
+                                        <button type="button" data-id="7" aria-label="Agregar Alitas Buffalo a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center" style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white position-relative">
+                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold text-uppercase">Hot</span>
+                                <img src="img/alitaspicantes.jpeg" class="card-img-top card-img-custom" alt="Alitas BBQ">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Alitas BBQ / Picantes</h5>
+                                        <p class="card-text text-secondary small">Fritas o crujientes bañadas en salsa BBQ picante, con refresco incluido y servido con salsa de queso azul.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 40</span>
+                                        <button type="button" data-id="8" aria-label="Agregar Alitas BBQ / Picantes a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center" style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pill-pipocas" role="tabpanel" aria-labelledby="pill-pipocas-tab" tabindex="0">
+                    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white">
+                                <img src="img/pipocasdepollo.jpeg" class="card-img-top card-img-custom" alt="Pipocas de Pollo">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Pipocas de Pollo</h5>
+                                        <p class="card-text text-secondary small">Crocantes trozos de pechuga de pollo, guarnición de papas, un refresco  y aderezos de la casa..</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 25</span>
+                                        <button type="button" data-id="9" aria-label="Agregar Pipocas de Pollo a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center" style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pill-bebidas" role="tabpanel" aria-labelledby="pill-bebidas-tab" tabindex="0">
+                    <div class="row row-cols-2 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 g-4">
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white position-relative">
+                                <span class="position-absolute top-0 start-0 m-3 badge bg-danger text-white fw-bold text-uppercase">Clásica</span>
+                                <img src="img/personal300ml.jpeg" class="card-img-top card-img-custom" alt="Coca-Cola Original">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Coca-Cola 300ml</h5>
+                                        <p class="card-text text-secondary small">Refresco Coca-Cola Mini. Sabor Original helado, ideal para acompañar tu combo favorito.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 3</span>
+                                        <button type="button" data-id="10" aria-label="Agregar Coca-Cola 300ml a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center" style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white">
+                                <img src="img/mediolitrocc.jpeg" class="card-img-top card-img-custom" alt="Fanta Naranja">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Coca Cola 1/2l</h5>
+                                        <p class="card-text text-secondary small">Refresco Coca-Cola de medio litro. Sabor Original helado, ideal para acompañar tu combo favorito.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 12</span>
+                                        <button type="button" data-id="11" aria-label="Agregar Coca Cola 1/2l a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center" style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white">
+                                <img src="img/2litroscc.jpeg" class="card-img-top card-img-custom" alt="Sprite">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Coca Cola 2l</h5>
+                                        <p class="card-text text-secondary small">Refresco Coca-Cola de 2 litros. Sabor Original helado, ideal para acompañar tu combo favorito.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 15</span>
+                                        <button type="button" data-id="12" aria-label="Agregar Coca Cola 2l a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center" style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="card h-100 menu-card text-white">
+                                <img src="img/fanta2l.jpeg" class="card-img-top card-img-custom" alt="Sprite">
+                                <div class="card-body d-flex flex-column justify-content-between">
+                                    <div>
+                                        <h5 class="card-title font-impact text-uppercase">Fanta Naranaja 2l</h5>
+                                        <p class="card-text text-secondary small">Refresco Fanta de 2 litros. Sabor Original helado, ideal para acompañar tu combo favorito.</p>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <span class="fs-3 fw-bold text-warning">Bs. 17</span>
+                                        <button type="button" data-id="13" aria-label="Agregar Fanta Naranaja 2l a la canasta" class="btn btn-agregar btn-crazy-red p-3 rounded-circle d-flex align-items-center justify-content-center" style="width:35px; height:35px;"><i class="bi bi-plus-lg"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="promociones" class="py-5 ">
+        <div class="container">
+            <div class="text-center mb-5">
+                <h3 class="text-danger fw-bold text-uppercase m-0">Promociones</h3>
+                <h2 class="font-impact text-uppercase display-5 fw-bold">Prueba al<span class="text-warning"> go nuevo</span></h2>
+            </div>
+            <div id="secondaryCarousel" class="carousel slide carousel-secondary mb-5 mt-5" data-bs-ride="carousel" data-bs-interval="4500">
+                <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#secondaryCarousel" data-bs-slide-to="0" class="active" arria-current="true"></button>
+                    <button type="button" data-bs-target="#secondaryCarousel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#secondaryCarousel" data-bs-slide-to="2"></button>
+                </div>
+                <div class="carousel-inner rounded-4 shadow-sm">
+                    <div class="carousel-item active carousel-item-secondary">
+                        <picture>
+                            <source media="(min-width:768px)" srcset="img/serv_jueves6.jpg">
+                            <img src="img/sm_serv6j.jpeg" class="d-block w-100 carousel-img-secondary" alt="promociones">
+                        </picture>
+                    </div>
+                    <div class="carousel-item carousel-item-secondary">
+                        <picture>
+                            <source media="(min-width:768px)" srcset="img/serv_vales.jpeg">
+                            <img src="img/sm_servales.jpeg" class="d-block w-100 carousel-img-secondary" alt="vales">
+                        </picture>
+                    </div>
+                    <div class="carousel-item carousel-item-secondary">
+                        <picture>
+                            <source media="(min-width: 768px)" srcset="img/serv_nov.jpg">
+                            <img src="img/serv_nov.jpg" class="d-block w-100 carousel-img-secondary" alt="novedades">
+                        </picture>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#secondaryCarousel" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#secondaryCarousel" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section id="nosotros" class="py-5">
+        <div class="container">
+            <div class="text-center mb-5 mt-5">
+                <h3 class="text-danger fw-bold text-uppercase m-0">Nuestra Historia</h3>
+                <h2 class="font-impact text-uppercase display-5 fw-bold">Conoce más<span class="text-warning"> de nosotros</span></h2>
+            </div>
+            <div class="row row-cols-1 row-cols-md-3 row-cols-lg-3 g-4">
+                <div class="col">
+                    <div class="card card-vision h-100 text-center p-2">
+                        <h3 class="fw-bold text-warning" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">VISIÓN</h3>
+                        <p class="text-white">Consolidarnos como un restaurante de referencia por nuestro sabor tradicional, nuestro servicio y propuesta, desde el primer dia.</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-valor h-100 text-center p-2">
+                        <h3 class="fw-bold text-warning" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">VALORES</h3>
+                        <ul class="text-white list-unstyled">
+                            <li>Familia y Unión</li>
+                            <li>Calidez y Servicio</li>
+                            <li>Perseverancia y Calidad</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card card-mision h-100 text-center p-2">
+                        <h3 class="fw-bold text-warning" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">MISIÓN</h3>
+                        <p class="text-white">Ofrecer una experiencia auténtica, sazón artesanal e ingredientes de calidad, brindando una atención cálida y acogedora.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <div class="col-12">
+                    <div class="story-hero-img position-relative overflow-hidden rounded-0 text-white d-flex align-items-center p-4 p-md-5">
+                        <div class="story-overlay position-absolute top-0 start-0 w-100 h-100"></div>
+                        <div class="position-relative z-1 story-text-content">
+                            <span class="badge bg-danger text-uppercase fw-bold mb-3 px-3 py-2 fs-6">Nuestra Historia</span>
+                            <h3 class="font-impact text-uppercase display-5 text-white mb-3">El Origen del Sabor Crazy</h3>
+                            <p class="text-light  justify-content mb-0">
+                                Esta historia comenzó a escribirse en 2023 gracias a la visión de Marcela y sus hijos, quienes por el amor a la cocina tradicional y el deseo profundo de salir adelante, 
+                                abrieron las puertas de Crazy Chicken, logrando transformar con el tiempo esa pequeña propuesta en un restaurante. 
+                                <strong class="text-crazy-yellow">Que sigue en marcha desde hace 3 años.</strong> 
+                                Así, cada plato servido se convirtió en el reflejo del trabajo en equipo y la perseverancia.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-5" id="ubicacion">
+        <div class="container">
+            <div class="text-center mb-5 mt-5">
+                <h3 class="text-danger fw-bold text-uppercase m-0">ubicación</h3>
+                <h2 class="font-impact text-uppercase display-5 fw-bold">visítanos o <span class="text-warning">contáctanos</span></h2>
+            </div>
+            <div class="row mb-5">
+                <div class="col">
+                    <div class="card card-horarios h-100 text-center p-4">
+                        <h2 class="fw-bold" style="font-family: Verdana, Geneva, Tahoma, sans-serif; color: var(--red-dark);">Horarios de Atención</h2>
+                        <div class="row">
+                            <div class="col-6 h4 text-warning fw-bold" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Lunes a Sábado
+                                <ul class="list-unstyled">
+                                    <li class="text-white">12:00pm a 23:00pm</li>
+                                </ul>
+                            </div>
+                            <div class="col-6 h4 text-warning fw-bold" style="font-family: Verdana, Geneva, Tahoma, sans-serif;">Domingo
+                                <ul class="list-unstyled">
+                                    <li class="text-white">13:00pm a 19:00pm</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1897.7528506033987!2d-67.10944676145155!3d-17.955194495758025!2m3!1f0!2f0!3f0!3m2
+                !1i1024!2i768!4f13.1!3m3!1m2!1s0x93e2b0a7bd610827%3A0xd841b4b96dbf000d!2sPotosi%20256%2C%20Oruro!5e0!3m2!1ses-419!2sbo!4v1791157124322!5m2!1ses-419!2sbo" 
+                width="100%" height="100%" style="border:0; min-height:350px;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+    <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border border-secondary rounded-3">
+                <div class="modal-header border-bottom-0 pb-0">
+                    <h5 class="modal-title font-impact text-warning" id="loginModalLabel">ACCESO ADMINISTRADOR</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formLogin" novalidate>
+                        <div class="mb-3">
+                            <label for="adminUser" class="form-label">Usuario</label>
+                            <input type="text" class="form-control" id="adminUser" autocomplete="username" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="adminPass" class="form-label">Contraseña</label>
+                            <input type="password" class="form-control" id="adminPass" autocomplete="current-password" required>
+                        </div>
+                        <div id="loginError" class="alert alert-danger py-2 d-none" role="alert"></div>
+                        <button type="submit" class="btn btn-warning fw-bold w-100 mt-2">Ingresar al Sistema</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer id="contactanos">
+        <div class="container footer-grid">
+            <div class="footer-logo-side">
+                <span class="d-inline-flex align-items-center justify-content-center m-2 rounded-circle bg-danger bg-opacity-10 p-2" style="height: 60px; width: 60px;;">
+                    <img src="img/logoCCp.png" alt="Logo Crazy Chiken" style="height: 150%; width: auto; object-fit: contain;">
+                </span>
+                <a href="#" class="logo">CRAZY<span style="color: var(--red);">CHICKEN</span></a>
+                <p>Crazy Chicken - ©Todos los derechos reservados.</p>
+            </div>
+            <div>
+                <h4 class="footer-heading">Contáctanos</h4>
+                <ul class="contact-info">
+                    <li><i class="bi bi-telephone-fill"></i>(+591) 77069939</li>
+                </ul>
+                <h4 class="footer-heading" style="margin-top: 20px;">Síguenos</h4>
+                <div class="social-icons">
+                    <a href="https://www.tiktok.com/@crazy.chicken697?_r=1&_t=ZS-99vzgojIpc8" class="social-btn"><i class="bi bi-tiktok"></i></a>
+                    <a href="https://www.instagram.com/crazychicken442?stkn=ZDgyMG02eWV3M3Nj" class="social-btn"><i class="bi bi-instagram"></i></a>
+                    <a href="https://wa.me/59177069939" class="social-btn"><i class="bi bi-whatsapp"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <button id="btnCarrito" class="btn-carrito" type="button" data-bs-toggle="offcanvas" data-bs-target="#panelCarrito" aria-controls="panelCarrito" aria-label="Abrir canasta">
+        <i class="bi bi-basket3-fill"></i>
+        <span id="carritoContador" class="carrito-contador vacio">0</span>
+    </button>
+
+    <div class="offcanvas offcanvas-end panel-carrito" tabindex="-1" id="panelCarrito" aria-labelledby="tituloCarrito">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title titulo-cc fs-4 m-0" id="tituloCarrito">TU CANASTA</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body d-flex flex-column">
+            <div id="pasoCanasta" class="d-flex flex-column flex-grow-1">
+                <div id="listaCarrito" class="flex-grow-1"></div>
+                <div class="carrito-pie">
+                    <div class="carrito-total"><span>Total</span><span class="monto" id="totalCarrito">Bs. 0</span></div>
+                    <button id="btnContinuar" type="button" class="btn btn-pedir w-100" disabled>Continuar con mi pedido</button>
+                    <button id="btnVaciar" type="button" class="btn btn-link text-secondary w-100 mt-1 d-none">Vaciar canasta</button>
+                </div>
+            </div>
+            <form id="formPedido" class="d-none" novalidate>
+                <div class="mb-3">
+                    <label for="nombreCliente" class="form-label">Nombre completo</label>
+                    <input type="text" class="form-control" id="nombreCliente" placeholder="Ej. Juan Pérez" minlength="2" maxlength="80" required>
+                </div>
+                <div class="mb-3">
+                    <label for="telefonoCliente" class="form-label">Teléfono / Celular</label>
+                    <input type="tel" class="form-control" id="telefonoCliente" placeholder="Ej. 71234567" inputmode="numeric" pattern="[0-9 +\-]{7,15}" required>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label d-block">¿Cómo quieres tu pedido?</label>
+                    <div class="btn-group w-100" role="group" aria-label="Tipo de entrega">
+                        <input type="radio" class="btn-check" name="tipo_entrega" id="entRecoger" value="Recoger" checked>
+                        <label class="btn btn-outline-warning btn-sm" for="entRecoger">Recoger</label>
+                        <input type="radio" class="btn-check" name="tipo_entrega" id="entLocal" value="Local">
+                        <label class="btn btn-outline-warning btn-sm" for="entLocal">Comer aquí</label>
+                        <input type="radio" class="btn-check" name="tipo_entrega" id="entDelivery" value="Delivery">
+                        <label class="btn btn-outline-warning btn-sm" for="entDelivery">Delivery</label>
+                    </div>
+                </div>
+                <div class="mb-3 d-none" id="campoDireccion">
+                    <label for="direccion" class="form-label">Dirección de entrega</label>
+                    <input type="text" class="form-control" id="direccion" placeholder="Calle, número, zona y referencia" minlength="5" maxlength="150">
+                </div>
+                <div class="mb-3">
+                    <label for="metodoPago" class="form-label">Método de pago</label>
+                    <select class="form-select" id="metodoPago">
+                        <option>Efectivo</option>
+                        <option>QR</option>
+                    </select>
+                </div>
+                <div id="pagoQR" class="pago-qr d-none">
+                    <p class="pago-qr-titulo">Escanea el código para pagar</p>
+                    <img src="img/qr-pago.jpeg" alt="Código QR para pagar" class="pago-qr-img">
+                    <p class="pago-qr-ayuda">Después de pagar, envía tu comprobante:</p>
+                    <a href="https://wa.me/59177069939?text=Hola%2C%20acabo%20de%20hacer%20un%20pedido%20y%20quiero%20enviar%20mi%20comprobante%20de%20pago"
+                       target="_blank" rel="noopener" class="pago-qr-whatsapp">
+                        <i class="bi bi-whatsapp"></i> Enviar comprobante por WhatsApp
+                    </a>
+                </div>
+                <div class="mb-3">
+                    <label for="notasPedido" class="form-label">Notas (opcional)</label>
+                    <input type="text" class="form-control" id="notasPedido" placeholder="Ej. sin picante, más aderezo" maxlength="300">
+                </div>
+                <div class="carrito-total"><span>Total a pagar</span><span class="monto" id="totalConfirmar">Bs. 0</span></div>
+                <div id="errorPedido" class="alert alert-danger py-2 d-none" role="alert"></div>
+                <button id="btnConfirmar" type="submit" class="btn btn-pedir w-100">Confirmar pedido</button>
+                <button id="btnVolver" type="button" class="btn btn-link text-secondary w-100 mt-1">Volver a la canasta</button>
+            </form>
+            <div id="pasoListo" class="pedido-listo text-center d-none py-4">
+                <i class="bi bi-check-circle-fill"></i>
+                <p class="mb-0 mt-2 text-secondary">Tu número de pedido es</p>
+                <div class="numero" id="numPedidoListo">#0</div>
+                <p class="mb-1">Total: <strong class="text-warning" id="totalPedidoListo">Bs. 0</strong></p>
+                <p class="text-secondary small" id="mensajeListo"></p>
+                <button id="btnSeguir" type="button" class="btn btn-pedir mt-3 px-4">Seguir en el menú</button>
+            </div>
+        </div>
+    </div>
+    <div id="avisoCC" role="status" aria-live="polite"></div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="js/carrito.js"></script>
+</body>
+</html> 
